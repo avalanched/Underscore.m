@@ -61,6 +61,9 @@
 
 @property (readonly) USArrayWrapper *uniq;
 
+@property (readonly) id (^min)(UnderscoreValueBlock block);
+@property (readonly) id (^max)(UnderscoreValueBlock block);
+
 @property (readonly) id (^find)(UnderscoreTestBlock block);
 
 @property (readonly) USArrayWrapper *(^filter)(UnderscoreTestBlock block);

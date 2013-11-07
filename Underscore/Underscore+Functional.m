@@ -149,6 +149,13 @@
     };
 }
 
++ (id (^)(NSArray *, UnderscoreValueBlock))max
+{
+    return ^(NSArray *array, UnderscoreValueBlock block) {
+        return Underscore.array(array).max(block);
+    };
+}
+
 + (id (^)(NSArray *, UnderscoreTestBlock))find
 {
     return ^(NSArray *array, UnderscoreTestBlock block) {
@@ -162,6 +169,7 @@
         return Underscore.array(array).filter(block).unwrap;
     };
 }
+
 + (NSArray *(^)(NSArray *, UnderscoreTestBlock))reject
 {
     return ^(NSArray *array, UnderscoreTestBlock block) {

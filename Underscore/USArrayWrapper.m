@@ -258,6 +258,45 @@
     return [[USArrayWrapper alloc] initWithArray:[set array]];
 }
 
+- (id (^)(UnderscoreValueBlock))min
+{
+    return ^id (UnderscoreValueBlock test) {
+        
+        if( !test ) return [self.array valueForKeyPath:@"@min.doubleValue"];
+        
+        id result = nil;
+        NSNumber *minValue = nil;
+        for (id obj in self.array) {
+            NSNumber *value = test(obj);
+            
+            if( !minValue ) minValue = value, result = obj;
+            else if( [minValue compare:value] == NSOrderedDescending ) minValue = value, result = obj;
+        }
+        
+        return result;
+    };
+}
+
+- (id (^)(UnderscoreValueBlock))max
+{
+    return ^id (UnderscoreValueBlock test) {
+        
+        if( !test ) return [self.array valueForKeyPath:@"@max.doubleValue"];
+        
+        id result = nil;
+        NSNumber *maxValue = nil;
+        for (id obj in self.array) {
+            NSNumber *value = test(obj);
+            
+            if( !maxValue ) maxValue = value, result = obj;
+            else if( [maxValue compare:value] == NSOrderedAscending ) maxValue = value, result = obj;
+        }
+        
+        return result;
+    };
+}
+
+
 - (id (^)(UnderscoreTestBlock))find
 {
     return ^id (UnderscoreTestBlock test) {

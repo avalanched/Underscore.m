@@ -26,6 +26,8 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef id   (^UnderscoreValueBlock)(id obj);
 typedef BOOL (^UnderscoreTestBlock)(id obj);
 typedef id   (^UnderscoreReduceBlock)(id memo, id obj);
 

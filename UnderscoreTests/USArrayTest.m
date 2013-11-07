@@ -643,4 +643,43 @@ static UnderscoreTestBlock nonePass = ^BOOL(id any) {return NO; };
                          _.array(notSorted).sort(numericalSort).unwrap);
 }
 
+- (void)testMin
+{
+    NSDictionary *dict = @{@"name": @"mark", @"value" : @2};
+    
+    NSArray *dictArray    = @[ @{@"name": @"python", @"value" : @3}, @{@"name": @"monthy", @"value" : @3.3}, @{@"name": @"mark", @"value" : @2} ];
+    NSArray *numbersArray   = @[ @100, @3.3, @3 ];
+    
+    UnderscoreValueBlock minBlock1 = ^id(NSDictionary *dict){ return dict[@"value"]; };
+    UnderscoreValueBlock minBlock2 = nil;
+    
+    
+    STAssertEqualObjects(_.array(dictArray).min(minBlock1),
+                         dict,
+                         @"Can find min element");
+    
+    STAssertEqualObjects(_.array(numbersArray).min(minBlock2),
+                         @3,
+                         @"Can find min element");
+}
+
+- (void)testMax
+{
+    NSDictionary *dict = @{@"name": @"monthy", @"value" : @3.3};
+    
+    NSArray *dictArray    = @[ @{@"name": @"python", @"value" : @3}, @{@"name": @"monthy", @"value" : @3.3}, @{@"name": @"mark", @"value" : @2} ];
+    NSArray *numbersArray   = @[ @100, @3.3, @3 ];
+    
+    UnderscoreValueBlock maxBlock1 = ^id(NSDictionary *dict){ return dict[@"value"]; };
+    UnderscoreValueBlock maxBlock2 = nil;
+    
+    STAssertEqualObjects(_.array(dictArray).max(maxBlock1),
+                         dict,
+                         @"Can find max element");
+    
+    STAssertEqualObjects(_.array(numbersArray).max(maxBlock2),
+                         @100,
+                         @"Can find max element");
+}
+
 @end
